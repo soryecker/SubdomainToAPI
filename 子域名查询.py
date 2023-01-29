@@ -1,6 +1,5 @@
 # https://www.dnsgrep.cn/subdomain/csdn.net
 import json
-
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request
@@ -18,9 +17,7 @@ def index():
         re = requests.get('https://www.dnsgrep.cn/subdomain/'+key)
         soup = BeautifulSoup(re.text, 'lxml')
         soup = soup.find_all('td')
-        a = 1
         s = []
-        aa = []
         for i in soup:
             i = i.text.replace(' ', '').replace('\n', '')
             # print(i)
@@ -29,6 +26,5 @@ def index():
     return ret
 
 
-# 启动实施（只在当前模块运行）
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0',port=2224, debug=True)
